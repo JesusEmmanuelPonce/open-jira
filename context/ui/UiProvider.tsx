@@ -1,6 +1,6 @@
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useReducer } from "react";
 
-import { UiContext } from "./";
+import { UiContext, UiReducer } from "./";
 
 export interface IUIState {
     sideMenuOpen: boolean;
@@ -15,6 +15,9 @@ interface IUiProviderProps {
 }
 
 const UiProvider: FC<IUiProviderProps> = ({ children }) => {
+
+    const [state, dispatch] = useReducer(UiReducer, UI_INITIAL_STATE)
+
     return (
         <UiContext.Provider value={{
             sideMenuOpen: false
